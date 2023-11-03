@@ -14,6 +14,9 @@ cd YOUR_PROJECT_NAME
 npm install
 npm i serverless-webpack
 
+sls deploy
+sls deploy -f createAuction
+
 ```
 
 You are ready to go!

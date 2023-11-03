@@ -17,6 +17,7 @@
   "dependencies": {
     "aws-sdk": "^2.639.0",
     "serverless-webpack": "^5.13.0",
-    "superagent": "^8.1.2"
+    "superagent": "^8.1.2",
+    "uuid": "^9.0.1"
   }
 }

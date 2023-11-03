@@ -1,0 +1,27 @@
+import {v4 as uuid} from 'uuid';
+import AWS from 'aws-sdk';
+const dynamoDB = new AWS.DynamoDB.DocumentClient();
+async function createMasterAuction(event, context) {
+  const {title} = JSON.parse(event.body);
+  const now = new Date();
+  const auction = {
+    id: uuid(),
+    title,
+    status:"OPEN",
+    createdAT: now.toISOString()
+  };
+
+  await dynamoDB.put({
+    TableName: "AuctionsMasterTable",
+    Item:auction
+  }).promise();
+
+  return {
+    statusCode: 201,
+    body: JSON.stringify({auction})
+  };
+}
+
+export const handler = createMasterAuction;
+
+
