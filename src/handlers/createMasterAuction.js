@@ -12,7 +12,7 @@ async function createMasterAuction(event, context) {
   };
 
   await dynamoDB.put({
-    TableName: "AuctionsMasterTable",
+    TableName: process.env.AUCTIONS_TABLE_NAME,
     Item:auction
   }).promise();
 
