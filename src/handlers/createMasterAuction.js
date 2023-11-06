@@ -11,7 +11,10 @@ async function createMasterAuction(event, context){
     id: uuid(),
     title,
     status:"OPEN",
-    createdAT: now.toISOString()
+    createdAT: now.toISOString(),
+    highestBid: {
+      amount: 0,
+    }
   };
 
   try {
