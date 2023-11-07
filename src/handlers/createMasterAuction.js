@@ -7,11 +7,14 @@ const dynamoDB = new AWS.DynamoDB.DocumentClient();
 async function createMasterAuction(event, context){
   const {title} = event.body;
   const now = new Date();
+  let endDate = new Date();
+  endDate.setHours(now.getHours() + 1);
   const auction = {
     id: uuid(),
     title,
     status:"OPEN",
     createdAT: now.toISOString(),
+    endingAt: endDate.toISOString(),
     highestBid: {
       amount: 0,
     }

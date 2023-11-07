@@ -22,5 +22,11 @@ npm install @middy/core @middy/http-event-normalizer @middy/http-error-handler @
  npm install http-errors
 
 ```
+Logs watch
+sls logs -f processAuctions -t
+sls logs -f processAuctions
+sls logs -f processAuctions --startTime 1m
+sls invoke -f processAuctions -l
+
 
 You are ready to go!
