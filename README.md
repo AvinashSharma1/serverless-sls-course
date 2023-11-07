@@ -17,6 +17,10 @@ npm i serverless-webpack
 sls deploy
 sls deploy -f createAuction
 
+
+npm install @middy/core @middy/http-event-normalizer @middy/http-error-handler @middy/http-json-body-parser
+ npm install http-errors
+
 ```
 
 You are ready to go!
