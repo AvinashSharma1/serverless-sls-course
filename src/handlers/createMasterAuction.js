@@ -1,7 +1,9 @@
 import {v4 as uuid} from 'uuid';
 import AWS from 'aws-sdk';
+import validator from '@middy/validator';
 import commonMiddleware from '../lib/commonMiddleware';
 import createError from 'http-errors';
+import createAuctionSchema from '../lib/schemas/createAuctionSchema';
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 async function createMasterAuction(event, context){
@@ -38,6 +40,12 @@ async function createMasterAuction(event, context){
   };
 }
 
-export const handler = commonMiddleware(createMasterAuction);
+export const handler = commonMiddleware(createMasterAuction)
+.use(validator({
+  inputSchema: createAuctionSchema,
+  ajvOptions: {
+    strict: false,
+  },
+}));
 
 
