@@ -5,6 +5,9 @@ jspm_packages
 # Serverless directories
 .serverless
 
+# Environment file
+.env
+
 # Webpack directories
 .webpack
 
@@ -32,6 +35,7 @@ pm2/
 *.njsproj
 *.sln
 *.sw*
+.history/
 
 # Optional npm cache directory
 .npm

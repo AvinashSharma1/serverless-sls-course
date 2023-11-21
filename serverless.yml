@@ -3,7 +3,9 @@ service: auction-master-service
 plugins:
   - serverless-bundle
   - serverless-pseudo-parameters
-
+  
+	
+useDotenv: true
 provider:
   name: aws
   runtime: nodejs16.x
@@ -12,8 +14,11 @@ provider:
   region: ap-south-1
   environment:
     AUCTIONS_TABLE_NAME: ${self:custom.AuctionsTable.name}
+    MAIL_QUEUE_URL: ${self:custom.MailQueue.url}
+    EMAIL_SOURCE_ENV_VALUE: ${env:EMAIL_SOURCE_ENV_VALUE}
   iamRoleStatements:
     - ${file(iam/AuctionsTableIAM.yml):AuctionsTableIAM}
+    - ${file(iam/MailQueueIAM.yml):MailQueueIAM}
 
 resources:
   Resources:
@@ -58,5 +63,8 @@ custom:
   AuctionsTable:
     name: !Ref AuctionsTable
     arn:  !GetAtt AuctionsTable.Arn
+  MailQueue:
+    arn: ${cf:sls-notification-service-${self:provider.stage}.MailQueueArn}
+    url: ${cf:sls-notification-service-${self:provider.stage}.MailQueueUrl}
   bundle:
     linting: false            

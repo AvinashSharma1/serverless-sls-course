@@ -29,4 +29,8 @@ sls logs -f processAuctions --startTime 1m
 sls invoke -f processAuctions -l
 
 
+npm i -D serverless-dotenv-plugin
+useDotenv: true
+- serverless-dotenv-plugin
+
 You are ready to go!
