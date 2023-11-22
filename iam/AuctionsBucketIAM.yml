@@ -1,0 +1,7 @@
+AuctionsBucketIAM:
+  Effect: Allow
+  Action:
+    - s3:CreateBucket
+    - s3:PutBucketPolicy
+    - s3:PutBucketAcl
+  Resource: arn:aws:s3:::${self:custom.AuctionsBucket.name}/*
